@@ -26,6 +26,7 @@ SER_TIMEOUT = 0.1
 # LoRa module config
 PAN_ID_HEX = "1234"
 CHANNEL = 1
+SPREADING_FACTOR = 8
 
 # =========================================================
 # Radio / timing parameters
