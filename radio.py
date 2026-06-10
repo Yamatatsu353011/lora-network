@@ -53,6 +53,7 @@ def init_radio() -> None:
 
     _send_cmd("2")
     _send_cmd(f"channel {config.CHANNEL}")
+    _send_cmd(f"sf {config.SPREADING_FACTOR}")
     _send_cmd(f"panid {config.PAN_ID_HEX}")
     _send_cmd(f"ownid {config.OWN_ID_HEX}")
     _send_cmd("dstid FFFF")
