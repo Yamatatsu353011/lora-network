@@ -6,6 +6,7 @@ from packet import Packet
 # 将来的にはこのファイルをSQLite/Redisに置き換える。
 queued_packets: Dict[str, Packet] = {}
 seen_asks: Set[str] = set()
+seen_replies: Set[str] = set()
 delivered_replies: Set[str] = set()
 
 next_seq = 0
