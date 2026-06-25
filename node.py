@@ -50,23 +50,20 @@ def handle_ask(pkt: Packet) -> None:
         state.queued_packets[f"A-{pkt.pkt_id}"] = pkt
 
 
-def handle_reply(pkt: Packet) -> None:
+def handle_reply(pkt: Packet) -> None
     print(f"[RX-REPLY] pkt={pkt.pkt_id} data_id={pkt.data_id}")
 
-    # 自分がsourceなら到着
+    # 自分がREPLYの宛先なら到着
     if config.MY_BST_ID == pkt.target_bst:
-        if pkt.pkt_id not in delivered_replies:
-            delivered_replies.add(pkt.pkt_id)
+        if pkt.pkt_id not in state.delivered_replies:
+            state.delivered_replies.add(pkt.pkt_id)
             print(f"[REPLY-ARRIVED] pkt={pkt.pkt_id}")
         return
 
-    # sourceでないノードはREPLYを中継する
-    if should_forward(pkt):
-        queued_packets[f"R-{pkt.pkt_id}"] = pkt
+    # 宛先でないノードはREPLYを中継する
+    if routing.should_forward(pkt):
+        state.queued_packets[f"R-{pkt.pkt_id}"] = pkt
         print(f"[REPLY-FORWARD-QUEUE] pkt={pkt.pkt_id}")
-
-
-
 def handle_rx(pkt: Packet) -> None:
     if pkt.msg_type == "ASK":
         handle_ask(pkt)
