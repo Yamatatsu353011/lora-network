@@ -48,6 +48,7 @@ def decode(line: str) -> Optional[Packet]:
                 target_bst=int(parts[2]),
                 data_id=parts[3],
                 source_bst=-1,
+                responder_bst=int(parts[4]),
             )
 
         return None
