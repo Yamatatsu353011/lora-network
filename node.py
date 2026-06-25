@@ -54,7 +54,7 @@ def handle_reply(pkt: Packet) -> None:
     print(f"[RX-REPLY] pkt={pkt.pkt_id} data_id={pkt.data_id}")
 
     # 自分がsourceなら到着
-    if IS_SOURCE and MY_BST_ID == pkt.target_bst:
+    if config.MY_BST_ID == pkt.target_bst:
         if pkt.pkt_id not in delivered_replies:
             delivered_replies.add(pkt.pkt_id)
             print(f"[REPLY-ARRIVED] pkt={pkt.pkt_id}")
