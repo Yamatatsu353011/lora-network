@@ -58,6 +58,13 @@ def handle_reply(pkt: Packet) -> None:
             logger.log_reply(pkt)
             print(f"[REPLY-ARRIVED] pkt={pkt.pkt_id}")
         return
+        
+    # sourceでないノードはREPLYを中継する
+    if should_forward(pkt):
+        queued_packets[f"R-{pkt.pkt_id}"] = pkt
+        print(f"[REPLY-FORWARD-QUEUE] pkt={pkt.pkt_id}")
+
+
 
 
 def handle_rx(pkt: Packet) -> None:
