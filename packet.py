@@ -13,7 +13,7 @@ class Packet:
     target_bst: int
     data_id: str
     source_bst: int = -1   # ASKだけで使う
-    responder_bst: int = -1　#REPLY
+    responder_bst: int = -1 #REPLY
 
 
 def encode(pkt: Packet) -> str:
