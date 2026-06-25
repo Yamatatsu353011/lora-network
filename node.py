@@ -51,6 +51,9 @@ def handle_ask(pkt: Packet) -> None:
 
 
 def handle_reply(pkt: Packet) -> None:
+    if not routing.is_new_reply(pkt):
+        return
+        
     print(f"[RX-REPLY] pkt={pkt.pkt_id} data_id={pkt.data_id}")
 
     # 自分がREPLYの宛先なら到着
