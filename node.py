@@ -53,17 +53,17 @@ def handle_ask(pkt: Packet) -> None:
 def handle_reply(pkt: Packet) -> None:
     print(f"[RX-REPLY] pkt={pkt.pkt_id} data_id={pkt.data_id}")
 
-    if config.IS_SOURCE and config.MY_BST_ID == pkt.target_bst:
-        if routing.is_new_delivered_reply(pkt):
-            logger.log_reply(pkt)
+    # 自分がsourceなら到着
+    if IS_SOURCE and MY_BST_ID == pkt.target_bst:
+        if pkt.pkt_id not in delivered_replies:
+            delivered_replies.add(pkt.pkt_id)
             print(f"[REPLY-ARRIVED] pkt={pkt.pkt_id}")
         return
-        
+
     # sourceでないノードはREPLYを中継する
     if should_forward(pkt):
         queued_packets[f"R-{pkt.pkt_id}"] = pkt
         print(f"[REPLY-FORWARD-QUEUE] pkt={pkt.pkt_id}")
-
 
 
 
