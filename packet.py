@@ -13,6 +13,7 @@ class Packet:
     target_bst: int
     data_id: str
     source_bst: int = -1   # ASKだけで使う
+    responder_bst: int = -1　#REPLY
 
 
 def encode(pkt: Packet) -> str:
@@ -61,6 +62,7 @@ def make_ask_packet(seq: int) -> Packet:
         target_bst=config.SOURCE_ASK_TARGET_BST_ID,
         data_id=config.SOURCE_ASK_DATA_ID,
         source_bst=config.MY_BST_ID,
+        responder_bst=-1,
     )
 
 
@@ -72,4 +74,5 @@ def make_reply_packet(ask_pkt: Packet) -> Packet:
         target_bst=ask_pkt.source_bst,
         data_id=ask_pkt.data_id,
         source_bst=-1,
+        responder_bst=config.MY_BST_ID
     )
