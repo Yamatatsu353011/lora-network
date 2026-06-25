@@ -8,7 +8,12 @@ def is_new_ask(pkt: Packet) -> bool:
         return False
     state.seen_asks.add(pkt.pkt_id)
     return True
-
+    
+def is_new_reply(pkt: Packet) -> bool:
+    if pkt.pkt_id in state.seen_replies:
+        return False
+    state.seen_replies.add(pkt.pkt_id)
+    return True
 
 def should_forward(pkt: Packet) -> bool:
     # 実機初期確認はまず常に通す。
