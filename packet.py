@@ -19,7 +19,7 @@ class Packet:
 def encode(pkt: Packet) -> str:
     if pkt.msg_type == "ASK":
         return f"A,{pkt.pkt_id},{pkt.target_bst},{pkt.data_id},{pkt.source_bst}"
-    return f"R,{pkt.pkt_id},{pkt.target_bst},{pkt.data_id}"
+    return f"R,{pkt.pkt_id},{pkt.target_bst},{pkt.data_id},{pkt.responder_bst}"
 
 
 def decode(line: str) -> Optional[Packet]:
