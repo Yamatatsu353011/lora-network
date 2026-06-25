@@ -50,7 +50,7 @@ def handle_ask(pkt: Packet) -> None:
         state.queued_packets[f"A-{pkt.pkt_id}"] = pkt
 
 
-def handle_reply(pkt: Packet) -> None
+def handle_reply(pkt: Packet) -> None:
     print(f"[RX-REPLY] pkt={pkt.pkt_id} data_id={pkt.data_id}")
 
     # 自分がREPLYの宛先なら到着
